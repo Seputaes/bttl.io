@@ -3,6 +3,9 @@ plugins {
     id 'application'
 }
 
+group 'gg.sep'
+version '0.1.0-SNAPSHOT'
+
 repositories {
     jcenter()
     maven { url "https://jitpack.io" }
@@ -10,12 +13,16 @@ repositories {
 
 configurations.all {
     resolutionStrategy.dependencySubstitution {
-        substitute module('com.github.Seputaes:battlenetapi') with project(':battlenetapi')
+        if (findProject(':battlenetapi') != null) {
+            substitute module('com.github.Seputaes:battlenetapi') with project(':battlenetapi')
+        } else {
+            println("battlenetapi local project does not exist. Falling back to remote.")
+        }
     }
 }
 
 dependencies {
-    implementation 'com.github.Seputaes:battlenetapi:1.0.0'
+    implementation 'com.github.Seputaes:battlenetapi:master-SNAPSHOT'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
