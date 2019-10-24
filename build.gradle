@@ -29,7 +29,7 @@ dependencies {
 }
 
 application {
-    mainClassName = 'curlbattlenet.App'
+    mainClassName = 'gg.sep.bttl.io.App'
 }
 
 test {
